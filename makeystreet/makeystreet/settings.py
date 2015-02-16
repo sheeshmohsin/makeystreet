@@ -131,6 +131,10 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
 )
 
+CLIENTID = '20b5ef1babc98bb04129'
+
+CLIENTSECRET = 'e789cd37ef68d0e1d5eff821ca7a6a9e1c7118f3'
+
 LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_AUTHENTICATION_METHOD = "email" # Defaults to username_email

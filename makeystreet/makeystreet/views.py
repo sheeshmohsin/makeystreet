@@ -20,16 +20,21 @@ def profile(request):
 	return render_to_response('profile.html', context_instance=RequestContext(request))
 
 def linkgithub(request):
-	url = 'https://github.com/login/oauth/authorize/?client_id=20b5ef1babc98bb04129&scope=user:email,public_repo&state=' + 'sheesh'
+	url = 'https://github.com/login/oauth/authorize/?client_id='+settings.CLIENTID+'&scope=user:email,public_repo&state=' + 'sheesh'
 	return HttpResponseRedirect(url)
 
 def callback(request):
 	code = request.GET.get('code')
 	state = request.GET.get('state')
 	print code, state
-	payload = {'client_id':'20b5ef1babc98bb04129', 'client_secret':'e789cd37ef68d0e1d5eff821ca7a6a9e1c7118f3', 'code':code}
+	payload = {'client_id':settings.CLIENTID, 'client_secret':settings.CLIENTSECRET, 'code':code}
 	response = requests.post('https://github.com/login/oauth/access_token', params=payload)
 	response = urlparse.parse_qs(response.text)
-	access_token = response['access_token']
+	access_token = response['access_token'][0]
 	request.session['access_token'] = access_token
-	return render_to_response('listrepo.html', context_instance=RequestContext(request))
+	url = 'https://api.github.com/user?access_token=' + str(access_token)
+	response = requests.get(url)
+	url = response.json()["repos_url"]
+	public_repo_count = response.json()["public_repos"]
+	response = requests.get(url)
+	return render_to_response('listrepo.html', {'repos':response.json(), 'count':public_repo_count}, context_instance=RequestContext(request))
