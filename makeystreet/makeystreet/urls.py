@@ -11,6 +11,10 @@ urlpatterns = patterns('',
     url(r'^profile/$', 'makeystreet.views.profile', name='profile'),
     url(r'^link/github/$', 'makeystreet.views.linkgithub', name="linkgithub"),
     url(r'^callback/$', 'makeystreet.views.callback', name='callback'),
+    url(r'^listrepo/$', 'makeystreet.views.listrepo', name='listrepo'),
+    url(r'^create_hook/(?P<repo_id>[\w\-_]+)/$', 'makeystreet.views.create_hook', name='create_hook'),
+    url(r'^webhook/(?P<login>[\w\-_]+)/$', 'makeystreet.views.webhook', name='webhook'),
+    url(r'^activity/$', 'makeystreet.views.activity', name='activity'),
     # url(r'^makeystreet/', include('makeystreet.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

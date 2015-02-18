@@ -1,0 +1,8 @@
+{% if activities %}
+{% for activity in activities %}
+{{activity.detail}}
+<p>========================================================</p>
+{% endfor %}
+{% else %}
+<p>No Activities yet</p>
+{% endif %}

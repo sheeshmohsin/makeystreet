@@ -16,7 +16,7 @@ MANAGERS = ADMINS
 ### Databases
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres:///makeystreet')
+    'default': dj_database_url.config(default='postgres:///makeystree2')
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'core',
 )
 
 CLIENTID = '20b5ef1babc98bb04129'

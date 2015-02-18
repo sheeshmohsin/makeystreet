@@ -1,1 +1,1 @@
-{% if request.user.is_authenticated %}<a href="/profile/">Go to profile</a>{% else %}<a href="/accounts/login/">Register/Login</a>{% endif %}
+{% if request.user.is_authenticated %}<a href="/profile/">Go to profile</a><br><a href="/activity/">Activity</a>{% else %}<a href="/accounts/login/">Register/Login</a>{% endif %}
